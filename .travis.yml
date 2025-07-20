@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+  - "18"
+
+branches:
+  only:
+    - main
+    - staging
+
+cache:
+  directories:
+    - node_modules
+
+install:
+  - npm ci
+
+script:
+  - npm run lint
+  - npm run test -- --coverage
+  - npm run build
+
+after_success:
+  - echo "✅ Build and test successful!"
